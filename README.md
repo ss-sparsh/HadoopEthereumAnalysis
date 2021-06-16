@@ -2,7 +2,7 @@
 
 Analysis of Ethereum Transactions
 
-##Dataset overview
+## Dataset overview
 
 Ethereum is a blockchain based distributed computing platform where users may exchange currency (Ether), provide or purchase services (smart contracts), mint their own coinage (tokens), as well as other applications. The Ethereum network is fully decentralised, managed by public-key cryptography, peer-to-peer networking, and proof-of-work to process/verify transactions.
 
@@ -10,7 +10,7 @@ Whilst you would normally need a CLI tool such as GETH to access the Ethereum bl
 
 A subset of the data available on BigQuery is provided at the HDFS folder /data/ethereum. The blocks, contracts and transactions tables have been pulled down and been stripped of unneeded fields to reduce their size. We have also downloaded a set of scams, both active and inactive, run on the Ethereum network via etherscamDB which is available on HDFS at /data/ethereum/scams.json.
 
-###Dataset Schema - blocks
+### Dataset Schema - blocks
 
 number: The block number
 
@@ -41,7 +41,7 @@ transaction_count: The number of transactions in the block
 |4776204|0x5cbbf6a7d477d8e...|0x52bc44d5378309e...|1766518145891730|21030|  8000029| 7851625|1513937587|              168|
 +-------+--------------------+--------------------+----------------+-----+---------+--------+----------+-----------------+
 
-###Dataset Schema - transactions
+### Dataset Schema - transactions
 
 block_number: Block number where this transaction was in
 
@@ -69,7 +69,7 @@ block_timestamp: Timestamp the associated block was registered at (effectively t
 |     6638809|0x71e5e2114561d30...|0xe36df5bb57e8062...|                  0| 60000| 5000000000|     1541290680|
 
 
-###Dataset Schema - contracts
+### Dataset Schema - contracts
 
 address: Address of the contract
 
@@ -87,7 +87,7 @@ block_number: Block number where this contract was created
 |0xc3649f1e59705f2...|   false|    false|     8621325|2019-09-26 00:29:...|
 |0x763fe69be6c6ec1...|   false|    false|     8621263|2019-09-26 00:16:...|
 
-###Dataset Schema - scams.json
+### Dataset Schema - scams.json
 
 id: Unique ID for the reported scam
 
@@ -133,10 +133,10 @@ status: If the scam is currently active, inactive or has been taken offline
     status: "Offline"
 },
 
-##Assignment
+## Assignment
 Write a set of Map/Reduce (or Spark) jobs that process the given input and generate the data required to answer the following questions:
 
-###Part A. Time Analysis (20%)
+### Part A. Time Analysis (20%)
 Create a bar plot showing the number of transactions occurring every month between the start and end of the dataset.
 Create a bar plot showing the average value of transaction in each month between the start and end of the dataset.
 
@@ -144,7 +144,7 @@ Note: As the dataset spans multiple years and you are aggregating together all t
 Note: Once the raw results have been processed within Hadoop/Spark you may create your bar plot in any software of your choice (excel, python, R, etc.)
 
 
-###Part B. Top Ten Most Popular Services (20%)
+### Part B. Top Ten Most Popular Services (20%)
 Evaluate the top 10 smart contracts by total Ether received. An outline of the subtasks required to extract this information is provided below, focusing on a MRJob based approach. This is, however, only one possibility, with several other viable ways of completing this assignment.
 
 Job 1 - Initial Aggregation
@@ -158,11 +158,11 @@ Secondly, in the reducer, if the address for a given aggregate from Job 1 was no
 Job 3 - Top Ten
 Finally, the third job will take as input the now filtered address aggregates and sort these via a top ten reducer, utilising what you have learned from lab 4.
 
-###Part C. Top Ten Most Active Miners (10%)
+### Part C. Top Ten Most Active Miners (10%)
 Evaluate the top 10 miners by the size of the blocks mined. This is simpler as it does not require a join. You will first have to aggregate blocks to see how much each miner has been involved in. You will want to aggregate size for addresses in the miner field. This will be similar to the wordcount that we saw in Lab 1 and Lab 2. You can add each value from the reducer to a list and then sort the list to obtain the most active miners.
 
 
-###Part D. Data exploration (50%)
+### Part D. Data exploration (50%)
 
 The final part of the coursework requires you to explore the data and perform some analysis of your choosing. These tasks may be completed in either MRJob or Spark, and you may make use of Spark libraries such as MLlib (for machine learning) and GraphX for graphy analysis. Below are some suggested ideas for analysis which could be undertaken, along with an expected grade for completing it to a good standard. You may attempt several of these tasks or undertake your own. However, it is recommended to discuss ideas with Joseph before commencing with them.
 Scam Analysis
